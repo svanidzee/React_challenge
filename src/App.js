@@ -13,16 +13,23 @@ const iconList = Object.keys(Icons)
 library.add(...iconList);
 console.log(iconList);
 
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 function App() {
   const [randomIcon, setRandomIcon] = useState('0'); // "0" is first Icon in Library
   console.log(randomIcon);
 
   // get random icon
-  const getRandomItem = () => {
+  async function getRandomItem() {
+    await delay(3000);
     const randomIndex = Math.floor(Math.random() * iconList.length);
     const selectedRandomIcon = iconList[randomIndex];
     setRandomIcon(selectedRandomIcon);
-  };
+  }
 
   return (
     <Flex width={'100vw'} height={'100vh'} alignContent={'center'} justifyContent={'center'}>
