@@ -2,7 +2,7 @@ import React from 'react';
 import { Center, Flex, Button } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function RandomIcon({ icon, onClick }) {
+function RandomIcon({ icon, onClick }) {
   return (
     <Flex width={'100vw'} height={'100vh'} alignContent={'center'} justifyContent={'center'}>
       <Center gap={10}>
@@ -14,3 +14,5 @@ export default function RandomIcon({ icon, onClick }) {
     </Flex>
   );
 }
+
+export default RandomIcon;
