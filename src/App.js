@@ -1,9 +1,10 @@
-import { Center, Flex, Button } from '@chakra-ui/react';
-import { findIconDefinition, library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 import * as Icons from '@fortawesome/free-solid-svg-icons';
+import { Center, Flex, Button } from '@chakra-ui/react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// transform object to array and format
+// transform Icons object to array and format
 const iconList = Object.keys(Icons)
   .filter((key) => key !== 'fas' && key !== 'prefix')
   .map((icon) => Icons[icon]);
@@ -12,15 +13,22 @@ const iconList = Object.keys(Icons)
 library.add(...iconList);
 console.log(iconList);
 
-const coffeeLookup = { prefix: 'fas', iconName: iconList[0].iconName };
-const coffeeIconDefinition = findIconDefinition(coffeeLookup);
-
 function App() {
+  const [randomIcon, setRandomIcon] = useState('0'); // "0" is first Icon in Library
+  console.log(randomIcon);
+
+  // get random icon
+  const getRandomItem = () => {
+    const randomIndex = Math.floor(Math.random() * iconList.length);
+    const selectedRandomIcon = iconList[randomIndex];
+    setRandomIcon(selectedRandomIcon);
+  };
+
   return (
     <Flex width={'100vw'} height={'100vh'} alignContent={'center'} justifyContent={'center'}>
       <Center>
-        <FontAwesomeIcon icon={coffeeIconDefinition} />
-        <Button>Change Icon</Button>
+        <FontAwesomeIcon icon={randomIcon} size='2xl' />
+        <Button onClick={getRandomItem}>Change Icon</Button>
       </Center>
     </Flex>
   );
